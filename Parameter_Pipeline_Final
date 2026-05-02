@@ -1,0 +1,50 @@
+
+# Declaring parameters
+Each parameter definition must include a name, a default value, and a description that explains the type of value that should be entered.
+
+For pipelines, there are five different types of parameters we can use:
+- String
+- Text
+- Boolean
+- Choice
+- Password
+
+# Sample pipeline with parameters
+Use the following pipeline script to experiment with parameters.
+```
+pipeline {
+    agent any
+    parameters {
+        string(name: 'NAME',
+               defaultValue: 'Student',
+               description: 'Enter your name')
+
+        text(name: 'COURSES',
+                description: 'Which training do you have completed',
+                defaultValue: '.........')
+
+        booleanParam(name: 'CURRENT_STUDENT',
+                defaultValue: false,
+                description: 'Tick the box if you are current student')
+
+        choice(name: 'CITY',
+                choices: ['Karachi', 'Lahore', 'Islamabad'],
+                description: 'Select the city.')
+
+        password(name: 'SALARY',
+                defaultValue: '...',
+                description: 'Enter your current salary')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "I am looking for admission and my name is ${params.NAME}"
+                echo "I am interested in ${params.COURSES}"  
+                echo "Are you OnWire's Student? ${params.CURRENT_STUDENT}"  
+                echo "I live in ${params.CITY}"  
+                echo "What is your Current Salary? ${params.SALARY}"  
+            }
+        }
+    }
+}
+```

@@ -1,0 +1,8 @@
+
+
+sudo visudo
+jenkins ALL=(ALL) NOPASSWD: ALL
+#DOCKERPERSONALACCESSTOKEN
+sudo usermod -aG docker jenkins
+groups jenkins
+sudo chown root:docker /var/run/docker.sock
