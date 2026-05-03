@@ -18,33 +18,36 @@ A pipeline configuration has three required sections.
 Create a pipeline job and paste in the following code to create a multi-stage pipeline.
 
 Run the job and examine the output.
-
+##################
 ```Jenkinsfile
+##################
+
 pipeline {
-    agent any
+    agent any   // Run on any available agent
+
     stages {
-        stage('Requirements') {
+        stage('Hello') {
             steps {
-                echo 'Getting Requirements....'
+                echo 'Hello, Jenkins!'
             }
         }
+
         stage('Build') {
             steps {
-                echo 'Building....'
+                echo 'Building the project...'
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Testing..1'
-                echo 'Testing..2'
-                echo 'Testing..3'
+                echo 'Running tests...'
             }
         }
-        stage('Report') {
+
+        stage('Deploy') {
             steps {
-                echo 'Reporting....'
+                echo 'Deploying application...'
             }
         }
     }
 }
-```

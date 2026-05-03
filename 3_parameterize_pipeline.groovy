@@ -1,4 +1,3 @@
-
 # Declaring parameters
 Each parameter definition must include a name, a default value, and a description that explains the type of value that should be entered.
 
@@ -11,6 +10,10 @@ For pipelines, there are five different types of parameters we can use:
 
 # Sample pipeline with parameters
 Use the following pipeline script to experiment with parameters.
+
+##################
+```Jenkinsfile
+##################
 ```
 pipeline {
     agent any

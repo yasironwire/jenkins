@@ -1,0 +1,42 @@
+
+  docker run -d \
+  --name jenkins \
+  -p 8080:8080 -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --group-add $(getent group docker | cut -d: -f3) \
+  jenkins/jenkins:lts
+
+
+
+# login in docker cotnainer with priveliged account
+docker exec -u 0 -it jenkins bash
+
+# run below commands in container to install DOCKER 
+apt update
+apt install -y docker.io
+
+
+docker restart jenkins
+
+
+
+Enable Automation: 
+Go to:
+Job → Configure → Build Triggers
+
+Enable:
+☑ GitHub hook trigger for GITScm polling
+
+
+
+
+sudo visudo
+onwire ALL=(ALL) NOPASSWD: ALL 
+
+## onwire = Current User
+
+sudo usermod -aG docker onwire
+groups onwire
+sudo chown root:docker /var/run/docker.sock
+
